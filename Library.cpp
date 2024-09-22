@@ -9,7 +9,13 @@ private:
     string author;
 
 public:
+    Book() {} 
     Book(string t, string a) {
+        this->title = t;
+        this->author = a;
+    }
+
+    void setBookDetails(string t, string a) {
         this->title = t;
         this->author = a;
     }
@@ -25,7 +31,13 @@ private:
     int user_id;
 
 public:
+    User() {} 
     User(int id, string n) {
+        this->user_id = id;
+        this->name = n;
+    }
+
+    void setUserDetails(int id, string n) {
         this->user_id = id;
         this->name = n;
     }
@@ -36,10 +48,51 @@ public:
 };
 
 int main() {
-    Book myBook("2001", "Jatin");
-    User myUser(1, "Vinay");
-    myBook.hello();
-    myUser.hello();
+    int numBooks, numUsers;
+
+    cout << "Enter the number of books: ";
+    cin >> numBooks;
+    cin.ignore();
+
+    Book books[numBooks];
+
+    for (int i = 0; i < numBooks; i++) {
+        string title, author;
+        cout << "Enter details for Book " << i + 1 << ":" << endl;
+        cout << "Title: ";
+        getline(cin, title);
+        cout << "Author: ";
+        getline(cin, author);
+        books[i].setBookDetails(title, author);
+    }
+
+    cout << "Enter the number of users: ";
+    cin >> numUsers;
+    cin.ignore();
+
+    User users[numUsers];
+
+    for (int i = 0; i < numUsers; i++) {
+        string name;
+        int id;
+        cout << "Enter details for User " << i + 1 << ":" << endl;
+        cout << "ID: ";
+        cin >> id;
+        cin.ignore(); 
+        cout << "Name: ";
+        getline(cin, name);
+        users[i].setUserDetails(id, name);
+    }
+
+    cout << "\nDisplaying Books: " << endl;
+    for (int i = 0; i < numBooks; i++) {
+        books[i].hello();
+    }
+
+    cout << "\nDisplaying Users: " << endl;
+    for (int i = 0; i < numUsers; i++) {
+        users[i].hello();
+    }
 
     return 0;
 }
